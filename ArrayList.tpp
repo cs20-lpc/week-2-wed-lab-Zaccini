@@ -32,7 +32,7 @@ void ArrayList<T>::append(const T& elem) {
 
 template <typename T>
 void ArrayList<T>::clear() {
-    delete buffer[];
+    delete[] buffer;
     buffer = nullptr;
     this->length = 0;
     maxSize = 0;
@@ -45,6 +45,7 @@ void ArrayList<T>::copy(const ArrayList<T>& copyObj) {
     buffer = new T[maxSize];
     for (int i = 0; i < this->length; i++) {
         buffer[i] = copyObj.buffer[i];
+    }
 }
 
 template <typename T>
@@ -65,9 +66,9 @@ int ArrayList<T>::getMaxSize() const {
 template <typename T>
 void ArrayList<T>::insert(int position, const T& elem) {
     if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!")
+        throw std::out_of_range("Invalid Position!");
     }
-    for(in i = this->length ; i > position, i--){
+    for(int i = this->length; i > position; i--){
         buffer[i] = buffer[i - 1];
     }
     buffer[position] = elem;
@@ -87,7 +88,7 @@ bool ArrayList<T>::isFull() const {
 template <typename T>
 void ArrayList<T>::remove(int position) {
     if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!")
+        throw std::out_of_range("Invalid Position!");
     }
     for (int i = position; i < this->length; i++){
         buffer[i] = buffer[i+1];
@@ -98,7 +99,7 @@ void ArrayList<T>::remove(int position) {
 template <typename T>
 void ArrayList<T>::replace(int position, const T& elem) {
     if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!")
+        throw std::out_of_range("Invalid Position!");
     }
     buffer[position] = elem;
 }
