@@ -1,6 +1,8 @@
 template <typename T>
 ArrayList<T>::ArrayList(int i) {
-    // TODO
+    maxSize = i;
+    this->length = 0;
+    buffer = new T[maxSize];
 }
 
 template <typename T>
@@ -24,22 +26,30 @@ ArrayList<T>::~ArrayList() {
 
 template <typename T>
 void ArrayList<T>::append(const T& elem) {
-    // TODO
+    if (isFull()) throw std::overflow_error("List full!");
+    buffer[this->length++] = elem;
 }
 
 template <typename T>
 void ArrayList<T>::clear() {
-    // TODO
+    delete buffer[];
+    buffer = nullptr;
+    this->length = 0;
+    maxSize = 0;
 }
 
 template <typename T>
 void ArrayList<T>::copy(const ArrayList<T>& copyObj) {
-    // TODO
+    maxSize = copyObj.maxSize;
+    this->length = copyObj.length;
+    buffer = new T[maxSize];
+    for (int i = 0; i < this->length; i++) {
+        buffer[i] = copyObj.buffer[i];
 }
 
 template <typename T>
 T ArrayList<T>::getElement(int position) const {
-    // TODO
+    return buffer[position];
 }
 
 template <typename T>
@@ -54,7 +64,14 @@ int ArrayList<T>::getMaxSize() const {
 
 template <typename T>
 void ArrayList<T>::insert(int position, const T& elem) {
-    // TODO
+    if(position < 0 || position >= this->length){
+        throw std::out_of_range("Invalid Position!")
+    }
+    for(in i = this->length ; i > position, i--){
+        buffer[i] = buffer[i - 1];
+    }
+    buffer[position] = elem;
+    this->length++;
 }
 
 template <typename T>
@@ -69,12 +86,21 @@ bool ArrayList<T>::isFull() const {
 
 template <typename T>
 void ArrayList<T>::remove(int position) {
-    // TODO
+    if(position < 0 || position >= this->length){
+        throw std::out_of_range("Invalid Position!")
+    }
+    for (int i = position; i < this->length; i++){
+        buffer[i] = buffer[i+1];
+    }
+    this->length--;
 }
 
 template <typename T>
 void ArrayList<T>::replace(int position, const T& elem) {
-    // TODO
+    if(position < 0 || position >= this->length){
+        throw std::out_of_range("Invalid Position!")
+    }
+    buffer[position] = elem;
 }
 
 template <typename T>
