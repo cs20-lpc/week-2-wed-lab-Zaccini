@@ -26,7 +26,7 @@ ArrayList<T>::~ArrayList() {
 
 template <typename T>
 void ArrayList<T>::append(const T& elem) {
-    if (isFull()) throw std::overflow_error("List full!");
+    if (isFull()) throw std::string("List full!");
     buffer[this->length++] = elem;
 }
 
@@ -66,7 +66,7 @@ int ArrayList<T>::getMaxSize() const {
 template <typename T>
 void ArrayList<T>::insert(int position, const T& elem) {
     if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!");
+        throw std::string("Invalid Position!");
     }
     for(int i = this->length; i > position; i--){
         buffer[i] = buffer[i - 1];
@@ -87,8 +87,8 @@ bool ArrayList<T>::isFull() const {
 
 template <typename T>
 void ArrayList<T>::remove(int position) {
-    if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!");
+    if(position < 0 || position > this->length){
+        throw std::string("Invalid Position!");
     }
     for (int i = position; i < this->length; i++){
         buffer[i] = buffer[i+1];
@@ -98,8 +98,8 @@ void ArrayList<T>::remove(int position) {
 
 template <typename T>
 void ArrayList<T>::replace(int position, const T& elem) {
-    if(position < 0 || position >= this->length){
-        throw std::out_of_range("Invalid Position!");
+    if(position < 0 || position > this->length){
+        throw std::string("Invalid Position!");
     }
     buffer[position] = elem;
 }
